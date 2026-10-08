@@ -1,265 +1,247 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vitae Hogar — Toma de muestras de sangre a domicilio</title>
-<meta name="description" content="Toma de muestras de sangre a domicilio en Medellín. Enfermería profesional, resultados confiables, sin salir de casa.">
+<title>Toma de Muestras de Sangre a Domicilio Medellín | Vitae Hogar</title>
+<meta name="description" content="Toma de muestras de sangre a domicilio en Medellín. Enfermera profesional, insumos estériles, resultados en 24-48h. Agenda HOY por WhatsApp.">
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script>
 tailwind.config = {
-  darkMode: 'class',
   theme: {
     extend: {
-      fontFamily: { sans: ['Geist', 'system-ui', 'sans-serif'] },
       colors: {
-        bg: '#0a0a0b',
-        mint: '#2dd4bf',
-        cyanx: '#22d3ee',
-      }
+        brand: { 50:'#eef7ff', 100:'#d9ecff', 400:'#3b93f0', 500:'#046BD2', 600:'#045cb4', 700:'#034a94', 900:'#0a2a52' },
+        dark: '#1f2124',
+      },
+      fontFamily: { sans: ['Poppins', 'sans-serif'] }
     }
   }
 }
 </script>
 <style>
-  body { background: #0a0a0b; }
-  .grid-bg {
-    background-image:
-      linear-gradient(to right, rgba(45,212,191,.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(45,212,191,.06) 1px, transparent 1px);
-    background-size: 56px 56px;
-  }
-  .glow { background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(45,212,191,.14), transparent 70%); }
-  .glow-2 { background: radial-gradient(ellipse 40% 35% at 80% 20%, rgba(34,211,238,.10), transparent 70%); }
-  .text-gradient {
-    background: linear-gradient(135deg, #2dd4bf 0%, #22d3ee 50%, #a5f3fc 100%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .card-glass {
-    background: rgba(255,255,255,.02);
-    border: 1px solid rgba(255,255,255,.07);
-    backdrop-filter: blur(12px);
-  }
-  .card-glass:hover { border-color: rgba(45,212,191,.35); }
-  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-  .float { animation: float 5s ease-in-out infinite; }
-  @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:.4} }
-  .pulse-dot { animation: pulse-dot 2s infinite; }
-  ::selection { background: rgba(45,212,191,.3); }
+  .hero-mask { clip-path: ellipse(130% 90% at 50% 0%); }
+  .card-hover { transition: transform .3s, box-shadow .3s; }
+  .card-hover:hover { transform: translateY(-6px); box-shadow: 0 22px 44px rgba(4,107,210,.16); }
 </style>
 </head>
-<body class="font-sans text-zinc-200 antialiased overflow-x-hidden">
+<body class="font-sans bg-white text-dark">
 
-<div class="fixed inset-0 grid-bg pointer-events-none"></div>
-<div class="fixed inset-0 glow pointer-events-none"></div>
-<div class="fixed inset-0 glow-2 pointer-events-none"></div>
+<!-- Barra superior urgencia -->
+<div class="bg-brand-900 text-white text-center text-sm py-2 px-4 font-medium">
+  🚨 ¿Necesitas tu muestra de sangre HOY? Agenda antes de las 6am y te visitamos el mismo día →
+  <a href="https://wa.me/570000000000" target="_blank" class="underline font-bold ml-1">Escríbenos ya</a>
+</div>
 
-<!-- Nav -->
-<nav class="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-[#0a0a0b]/80 backdrop-blur-xl">
-  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-    <div class="flex items-center gap-2.5">
-      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-mint to-cyanx flex items-center justify-center shadow-lg shadow-mint/20">
-        <span class="text-[#0a0a0b] font-black text-sm">V</span>
+<!-- Header -->
+<header class="bg-white/95 backdrop-blur fixed w-full top-[32px] z-50 shadow-sm">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">V</div>
+      <div>
+        <h1 class="font-bold text-brand-900 leading-tight">Vitae Hogar</h1>
+        <p class="text-[11px] text-brand-500 font-medium">Toma de muestras a domicilio</p>
       </div>
-      <span class="font-semibold text-white tracking-tight">Vitae Hogar</span>
     </div>
-    <div class="hidden md:flex items-center gap-8 text-sm text-zinc-400">
-      <a href="#como" class="hover:text-white transition">Cómo funciona</a>
-      <a href="#servicios" class="hover:text-white transition">Servicios</a>
-      <a href="#faq" class="hover:text-white transition">FAQ</a>
-    </div>
-    <a href="#agenda" class="text-sm font-medium text-[#0a0a0b] bg-gradient-to-r from-mint to-cyanx px-4 py-2 rounded-full hover:opacity-90 transition shadow-lg shadow-mint/25">Agendar</a>
+    <a href="https://wa.me/570000000000?text=Hola%2C%20quiero%20agendar%20una%20toma%20de%20muestras%20a%20domicilio" target="_blank"
+       class="bg-[#05d204] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:brightness-110 transition shadow-lg">💬 WhatsApp</a>
   </div>
-</nav>
+</header>
 
-<!-- Hero -->
-<section class="relative pt-36 pb-24 px-6">
-  <div class="max-w-6xl mx-auto text-center">
-    <div class="inline-flex items-center gap-2 rounded-full border border-mint/20 bg-mint/5 px-4 py-1.5 text-xs font-medium text-mint mb-8">
-      <span class="w-1.5 h-1.5 rounded-full bg-mint pulse-dot"></span>
-      Disponible hoy en Medellín y área metropolitana
-    </div>
-    <h1 class="text-5xl md:text-7xl font-black tracking-tight leading-[1.05] text-white mb-6">
-      Tus exámenes de sangre<br>
-      <span class="text-gradient">sin salir de casa</span>
-    </h1>
-    <p class="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-      Enfermera profesional llega a tu domicilio, toma la muestra con bioseguridad total
-      y la procesa un laboratorio aliado. Resultados en tu correo.
-    </p>
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-      <a href="https://wa.me/570000000000?text=Hola%2C%20quiero%20agendar%20una%20toma%20de%20muestras%20a%20domicilio" target="_blank"
-         class="text-[#0a0a0b] bg-gradient-to-r from-mint to-cyanx font-semibold text-lg px-8 py-4 rounded-full hover:opacity-90 transition-all shadow-2xl shadow-mint/30">
-        Agendar por WhatsApp →
-      </a>
-      <a href="#como" class="text-zinc-300 font-medium border border-white/10 px-8 py-4 rounded-full hover:bg-white/5 transition">
-        Ver cómo funciona
-      </a>
-    </div>
-    <div class="max-w-3xl mx-auto grid grid-cols-3 gap-px rounded-2xl overflow-hidden border border-white/5 bg-white/5">
-      <div class="bg-[#0a0a0b] py-6 px-4">
-        <p class="text-2xl md:text-3xl font-bold text-white">Mismo día</p>
-        <p class="text-xs text-zinc-500 mt-1">sujeto a disponibilidad</p>
+<!-- HERO con foto -->
+<section class="hero-mask bg-gradient-to-b from-brand-50 to-white pt-44 pb-20 px-4">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <h2 class="text-4xl md:text-5xl font-extrabold text-brand-900 leading-tight mb-4">
+        Toma de Muestras de Sangre a Domicilio en <span class="text-brand-500">Medellín</span>
+      </h2>
+      <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+        Enfermera profesional llega a tu casa, toma la muestra con bioseguridad total
+        y la procesa un laboratorio aliado. Sin filas, sin salir de casa.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a href="https://wa.me/570000000000?text=Hola%2C%20quiero%20agendar%20una%20toma%20de%20muestras%20a%20domicilio" target="_blank"
+           class="bg-[#05d204] text-white font-bold px-8 py-4 rounded-full hover:brightness-110 transition shadow-xl text-center">
+          💬 Agendar por WhatsApp
+        </a>
+        <a href="#servicios" class="bg-white text-brand-700 font-semibold px-8 py-4 rounded-full border-2 border-brand-100 hover:border-brand-400 transition text-center">
+          Ver servicios
+        </a>
       </div>
-      <div class="bg-[#0a0a0b] py-6 px-4">
-        <p class="text-2xl md:text-3xl font-bold text-white">100%</p>
-        <p class="text-xs text-zinc-500 mt-1">insumos estériles</p>
-      </div>
-      <div class="bg-[#0a0a0b] py-6 px-4">
-        <p class="text-2xl md:text-3xl font-bold text-white">6am–6pm</p>
-        <p class="text-xs text-zinc-500 mt-1">lunes a sábado</p>
+      <div class="flex flex-wrap gap-5 text-sm text-gray-500 font-medium mt-6">
+        <span>✅ Mismo día</span>
+        <span>✅ Insumos estériles</span>
+        <span>✅ Adultos mayores y niños</span>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- Cómo funciona -->
-<section id="como" class="py-24 px-6 relative">
-  <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-14">
-      <p class="text-mint text-sm font-semibold tracking-widest uppercase mb-3">Cómo funciona</p>
-      <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">Tres pasos, cero filas</h2>
-    </div>
-    <div class="grid md:grid-cols-3 gap-4">
-      <div class="card-glass rounded-2xl p-8 transition-all duration-300 float">
-        <div class="w-12 h-12 rounded-xl bg-mint/10 border border-mint/20 flex items-center justify-center text-2xl mb-6">📱</div>
-        <h3 class="text-white font-semibold text-lg mb-2">1 · Escríbenos</h3>
-        <p class="text-zinc-400 text-sm leading-relaxed">Envía tu orden médica por WhatsApp y coordina la visita. Respondemos en minutos.</p>
-      </div>
-      <div class="card-glass rounded-2xl p-8 transition-all duration-300 float" style="animation-delay:1.2s">
-        <div class="w-12 h-12 rounded-xl bg-cyanx/10 border border-cyanx/20 flex items-center justify-center text-2xl mb-6">🩸</div>
-        <h3 class="text-white font-semibold text-lg mb-2">2 · Toma en casa</h3>
-        <p class="text-zinc-400 text-sm leading-relaxed">La enfermera llega a tu puerta con insumos estériles y realiza la venopunción con total bioseguridad.</p>
-      </div>
-      <div class="card-glass rounded-2xl p-8 transition-all duration-300 float" style="animation-delay:2.4s">
-        <div class="w-12 h-12 rounded-xl bg-mint/10 border border-mint/20 flex items-center justify-center text-2xl mb-6">📧</div>
-        <h3 class="text-white font-semibold text-lg mb-2">3 · Resultados</h3>
-        <p class="text-zinc-400 text-sm leading-relaxed">La muestra se procesa en laboratorio aliado y recibes tus resultados por correo electrónico.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Servicios -->
-<section id="servicios" class="py-24 px-6">
-  <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-14">
-      <p class="text-mint text-sm font-semibold tracking-widest uppercase mb-3">Servicios</p>
-      <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">Especialistas en sangre</h2>
-    </div>
-    <div class="grid md:grid-cols-6 gap-4">
-      <div class="card-glass rounded-2xl p-8 md:col-span-4 relative overflow-hidden group">
-        <div class="absolute -top-20 -right-20 w-64 h-64 bg-mint/10 rounded-full blur-3xl group-hover:bg-mint/20 transition-all duration-700"></div>
-        <span class="text-4xl">🩸</span>
-        <h3 class="text-white font-semibold text-xl mt-4 mb-2">Toma de muestras de sangre</h3>
-        <p class="text-zinc-400 text-sm leading-relaxed max-w-md">
-          Venopunción para todos tus exámenes: hemograma, glucosa, perfilería hepática y renal,
-          hormonas, tiroides y más. Orden médica de cualquier EPS o particular.
-        </p>
-        <div class="flex flex-wrap gap-2 mt-5">
-          <span class="text-xs text-mint border border-mint/20 bg-mint/5 rounded-full px-3 py-1">Hemograma</span>
-          <span class="text-xs text-mint border border-mint/20 bg-mint/5 rounded-full px-3 py-1">Glucosa</span>
-          <span class="text-xs text-mint border border-mint/20 bg-mint/5 rounded-full px-3 py-1">Perfilería</span>
-          <span class="text-xs text-mint border border-mint/20 bg-mint/5 rounded-full px-3 py-1">Hormonas</span>
+    <div class="relative">
+      <img src="img/hero-enfermera.jpg" alt="Enfermera profesional atendiendo paciente en su casa en Medellín" class="rounded-3xl shadow-2xl w-full object-cover">
+      <div class="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-xl px-5 py-3 flex items-center gap-3">
+        <span class="text-2xl">👩‍⚕️</span>
+        <div>
+          <p class="font-bold text-brand-900 text-sm">Enfermera profesional</p>
+          <p class="text-xs text-gray-500">Tarjeta profesional · ReTHUS</p>
         </div>
       </div>
-      <div class="card-glass rounded-2xl p-8 md:col-span-2 flex flex-col">
+    </div>
+  </div>
+</section>
+
+<!-- URGENCIA -->
+<section class="py-14 px-4 bg-brand-900">
+  <div class="max-w-4xl mx-auto text-center">
+    <h3 class="text-2xl md:text-3xl font-extrabold text-white mb-3">¿Necesitas tu toma de muestra HOY mismo?</h3>
+    <p class="text-brand-100 mb-6">Atendemos urgentes con cita previa. Agenda antes de las 6am y te visitamos el mismo día en Medellín y área metropolitana.</p>
+    <a href="https://wa.me/570000000000?text=Hola%2C%20es%20URGENTE%2C%20necesito%20una%20toma%20de%20muestra%20HOY" target="_blank"
+       class="inline-block bg-[#05d204] text-white font-bold px-8 py-3.5 rounded-full hover:brightness-110 transition shadow-lg text-lg">
+      ⚡ Pedir servicio urgente
+    </a>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="py-20 px-4 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <h3 class="text-3xl font-extrabold text-center text-brand-900 mb-2">Servicios de Toma de Muestras</h3>
+    <p class="text-center text-gray-500 mb-12">Especialistas en muestras de sangre a domicilio en Medellín</p>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="card-hover bg-brand-50 rounded-2xl p-6 border border-brand-100">
+        <span class="text-4xl">🩸</span>
+        <h4 class="font-bold text-brand-900 text-lg mt-3 mb-2">Toma de muestras de sangre</h4>
+        <p class="text-sm text-gray-600">Venopunción para hemograma, glucosa, perfilería hepática/renal, hormonas y tiroides. Orden de cualquier EPS o particular.</p>
+      </div>
+      <div class="card-hover bg-brand-50 rounded-2xl p-6 border border-brand-100">
         <span class="text-4xl">👵</span>
-        <h3 class="text-white font-semibold text-lg mt-4 mb-2">Adultos mayores</h3>
-        <p class="text-zinc-400 text-sm leading-relaxed flex-1">Atención con paciencia y calidez. Sin filas ni desplazamientos para nuestros pacientes de oro.</p>
+        <h4 class="font-bold text-brand-900 text-lg mt-3 mb-2">Adultos mayores</h4>
+        <p class="text-sm text-gray-600">Atención con paciencia y calidez. Sin filas ni desplazamientos para pacientes de oro.</p>
       </div>
-      <div class="card-glass rounded-2xl p-8 md:col-span-2 flex flex-col">
+      <div class="card-hover bg-brand-50 rounded-2xl p-6 border border-brand-100">
         <span class="text-4xl">👶</span>
-        <h3 class="text-white font-semibold text-lg mt-4 mb-2">Niños y gestantes</h3>
-        <p class="text-zinc-400 text-sm leading-relaxed flex-1">Técnica delicada y trato amable para los más pequeños y mamás en embarazo.</p>
+        <h4 class="font-bold text-brand-900 text-lg mt-3 mb-2">Niños y gestantes</h4>
+        <p class="text-sm text-gray-600">Técnica delicada y trato amable para los más pequeños y mamás embarazadas.</p>
       </div>
-      <div class="card-glass rounded-2xl p-8 md:col-span-4 relative overflow-hidden group">
-        <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-cyanx/10 rounded-full blur-3xl group-hover:bg-cyanx/20 transition-all duration-700"></div>
-        <span class="text-4xl">🛡️</span>
-        <h3 class="text-white font-semibold text-lg mt-4 mb-2">Bioseguridad garantizada</h3>
-        <p class="text-zinc-400 text-sm leading-relaxed max-w-md">
-          Insumos estériles de un solo uso, manejo adecuado de la muestra y transporte trazable
-          hasta el laboratorio. Enfermera con tarjeta profesional y ReTHUS vigente.
-        </p>
+    </div>
+  </div>
+</section>
+
+<!-- CON FOTO: cómo funciona -->
+<section class="py-20 px-4 bg-brand-50">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <div class="relative order-2 md:order-1">
+      <img src="img/tubos-sangre.jpg" alt="Tubos de muestra de sangre listos para el laboratorio" class="rounded-3xl shadow-2xl w-full object-cover">
+      <div class="absolute -top-5 -right-5 bg-white rounded-2xl shadow-xl px-5 py-3">
+        <p class="font-bold text-brand-900 text-sm">🔬 Laboratorio aliado</p>
+        <p class="text-xs text-gray-500">Resultados en 24–48h</p>
       </div>
+    </div>
+    <div class="order-1 md:order-2">
+      <h3 class="text-3xl font-extrabold text-brand-900 mb-8">¿Cómo funciona?</h3>
+      <div class="space-y-5">
+        <div class="flex gap-4">
+          <span class="w-9 h-9 bg-brand-500 text-white rounded-full flex items-center justify-center font-bold shrink-0">1</span>
+          <div>
+            <h4 class="font-bold text-brand-900">Escríbenos por WhatsApp</h4>
+            <p class="text-sm text-gray-600">Envía tu orden médica y coordina la visita. Respondemos en minutos.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <span class="w-9 h-9 bg-brand-500 text-white rounded-full flex items-center justify-center font-bold shrink-0">2</span>
+          <div>
+            <h4 class="font-bold text-brand-900">La enfermera llega a tu casa</h4>
+            <p class="text-sm text-gray-600">Venopunción con insumos estériles de un solo uso y bioseguridad total.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <span class="w-9 h-9 bg-brand-500 text-white rounded-full flex items-center justify-center font-bold shrink-0">3</span>
+          <div>
+            <h4 class="font-bold text-brand-900">Resultados a tu correo</h4>
+            <p class="text-sm text-gray-600">La muestra se procesa en laboratorio aliado y te avisamos por WhatsApp.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COBERTURA + confianza -->
+<section class="py-20 px-4 bg-white">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <div>
+      <h3 class="text-3xl font-extrabold text-brand-900 mb-4">Cobertura en Medellín y área metropolitana</h3>
+      <p class="text-gray-600 mb-6">Visitamos Medellín, Envigado, Itagüí, Sabaneta, Bello y La Estrella. Confirmamos tu zona al agendar.</p>
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-brand-50 rounded-xl p-4 border border-brand-100 text-center">
+          <p class="text-xl font-bold text-brand-500">6am–6pm</p>
+          <p class="text-xs text-gray-500">lunes a sábado</p>
+        </div>
+        <div class="bg-brand-50 rounded-xl p-4 border border-brand-100 text-center">
+          <p class="text-xl font-bold text-brand-500">24–48h</p>
+          <p class="text-xs text-gray-500">resultados</p>
+        </div>
+        <div class="bg-brand-50 rounded-xl p-4 border border-brand-100 text-center">
+          <p class="text-xl font-bold text-brand-500">100%</p>
+          <p class="text-xs text-gray-500">insumos estériles</p>
+        </div>
+        <div class="bg-brand-50 rounded-xl p-4 border border-brand-100 text-center">
+          <p class="text-xl font-bold text-brand-500">ReTHUS</p>
+          <p class="text-xs text-gray-500">registro vigente</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <img src="img/adulto-mayor.jpg" alt="Paciente adulta mayor feliz con su enfermera en casa" class="rounded-3xl shadow-2xl w-full object-cover">
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section id="faq" class="py-24 px-6">
+<section class="py-20 px-4 bg-brand-50">
   <div class="max-w-3xl mx-auto">
-    <div class="text-center mb-14">
-      <p class="text-mint text-sm font-semibold tracking-widest uppercase mb-3">FAQ</p>
-      <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">Preguntas frecuentes</h2>
-    </div>
-    <div class="space-y-3">
-      <details class="card-glass rounded-xl group">
-        <summary class="flex items-center justify-between p-5 cursor-pointer text-white font-medium text-sm list-none">
-          ¿Necesito orden médica?
-          <span class="text-mint group-open:rotate-45 transition text-lg">+</span>
-        </summary>
-        <p class="px-5 pb-5 text-sm text-zinc-400 leading-relaxed">Sí. Cualquier orden médica funciona, sin importar la EPS o si es particular. Envíala por WhatsApp al agendar.</p>
+    <h3 class="text-3xl font-extrabold text-center text-brand-900 mb-10">Preguntas frecuentes</h3>
+    <div class="space-y-4">
+      <details class="bg-white rounded-xl p-5 shadow-sm">
+        <summary class="font-semibold text-brand-900 cursor-pointer">¿Necesito orden médica?</summary>
+        <p class="text-sm text-gray-600 mt-2">Sí, de cualquier EPS o particular. Envíala por WhatsApp al agendar.</p>
       </details>
-      <details class="card-glass rounded-xl group">
-        <summary class="flex items-center justify-between p-5 cursor-pointer text-white font-medium text-sm list-none">
-          ¿Cuándo llegan los resultados?
-          <span class="text-mint group-open:rotate-45 transition text-lg">+</span>
-        </summary>
-        <p class="px-5 pb-5 text-sm text-zinc-400 leading-relaxed">Depende del examen: los básicos en 24–48 horas; los especiales de 3 a 5 días. Te avisamos por WhatsApp.</p>
+      <details class="bg-white rounded-xl p-5 shadow-sm">
+        <summary class="font-semibold text-brand-900 cursor-pointer">¿Cuánto cuesta?</summary>
+        <p class="text-sm text-gray-600 mt-2">El servicio incluye desplazamiento y toma profesional. Cotizamos al momento según tu zona y exámenes.</p>
       </details>
-      <details class="card-glass rounded-xl group">
-        <summary class="flex items-center justify-between p-5 cursor-pointer text-white font-medium text-sm list-none">
-          ¿Qué zonas cubren?
-          <span class="text-mint group-open:rotate-45 transition text-lg">+</span>
-        </summary>
-        <p class="px-5 pb-5 text-sm text-zinc-400 leading-relaxed">Medellín y área metropolitana (Envigado, Itagüí, Sabaneta, Bello, La Estrella). Confirma tu zona al agendar.</p>
+      <details class="bg-white rounded-xl p-5 shadow-sm">
+        <summary class="font-semibold text-brand-900 cursor-pointer">¿Cómo pago?</summary>
+        <p class="text-sm text-gray-600 mt-2">Nequi, Daviplata o efectivo al momento de la toma.</p>
       </details>
-      <details class="card-glass rounded-xl group">
-        <summary class="flex items-center justify-between p-5 cursor-pointer text-white font-medium text-sm list-none">
-          ¿Cómo pago?
-          <span class="text-mint group-open:rotate-45 transition text-lg">+</span>
-        </summary>
-        <p class="px-5 pb-5 text-sm text-zinc-400 leading-relaxed">Nequi, Daviplata o efectivo al momento de la toma. El valor incluye el desplazamiento a tu domicilio.</p>
+      <details class="bg-white rounded-xl p-5 shadow-sm">
+        <summary class="font-semibold text-brand-900 cursor-pointer">¿Cuándo llegan los resultados?</summary>
+        <p class="text-sm text-gray-600 mt-2">Los exámenes básicos en 24–48 horas; especiales de 3 a 5 días. Te avisamos por WhatsApp.</p>
       </details>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section id="agenda" class="py-24 px-6">
-  <div class="max-w-4xl mx-auto relative">
-    <div class="card-glass rounded-3xl p-12 md:p-20 text-center relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-br from-mint/10 via-transparent to-cyanx/10 pointer-events-none"></div>
-      <div class="relative">
-        <h2 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
-          Agenda tu toma <span class="text-gradient">hoy</span>
-        </h2>
-        <p class="text-zinc-400 text-lg mb-10 max-w-xl mx-auto">
-          Sin filas, sin esperas, sin salir de casa. Solo envíanos tu orden médica por WhatsApp.
-        </p>
-        <a href="https://wa.me/570000000000?text=Hola%2C%20quiero%20agendar%20una%20toma%20de%20muestras%20a%20domicilio" target="_blank"
-           class="inline-block text-[#0a0a0b] bg-gradient-to-r from-mint to-cyanx font-bold text-lg px-10 py-4 rounded-full hover:opacity-90 transition-all shadow-2xl shadow-mint/30">
-          💬 Escribir por WhatsApp
-        </a>
-      </div>
-    </div>
+<!-- CTA FINAL -->
+<section class="py-16 px-4 bg-gradient-to-b from-brand-500 to-brand-700">
+  <div class="max-w-3xl mx-auto text-center text-white">
+    <h3 class="text-3xl md:text-4xl font-extrabold mb-4">Contrata hoy tu toma de muestra en Medellín</h3>
+    <p class="text-brand-100 text-lg mb-8">Sin filas, sin esperas, sin salir de casa. Solo envíanos tu orden médica.</p>
+    <a href="https://wa.me/570000000000?text=Hola%2C%20quiero%20agendar%20una%20toma%20de%20muestras%20a%20domicilio" target="_blank"
+       class="inline-block bg-[#05d204] text-white font-bold text-lg px-10 py-4 rounded-full hover:brightness-110 transition shadow-2xl">
+      💬 Escribir por WhatsApp
+    </a>
+    <p class="text-brand-100 text-sm mt-6">Atención: lunes a sábado 6am–6pm · Medellín y área metropolitana</p>
   </div>
 </section>
 
 <!-- Footer -->
-<footer class="border-t border-white/5 py-12 px-6">
-  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-    <div class="flex items-center gap-2.5">
-      <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-mint to-cyanx flex items-center justify-center">
-        <span class="text-[#0a0a0b] font-black text-xs">V</span>
-      </div>
-      <span class="font-semibold text-white">Vitae Hogar</span>
+<footer class="bg-brand-900 text-white py-10 px-4">
+  <div class="max-w-6xl mx-auto text-center">
+    <div class="flex items-center justify-center gap-2 mb-3">
+      <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center font-bold">V</div>
+      <span class="font-bold text-lg">Vitae Hogar</span>
     </div>
-    <p class="text-xs text-zinc-500">Toma de muestras de sangre a domicilio · Medellín, Colombia</p>
-    <p class="text-xs text-zinc-600">© 2026 · Servicio prestado por enfermería profesional independiente</p>
+    <p class="text-sm text-brand-100 mb-1">Toma de muestras de sangre a domicilio · Medellín, Colombia</p>
+    <p class="text-xs text-brand-300">© 2026 Vitae Hogar · Enfermería profesional independiente · Fotos: Openverse/Flickr (CC)</p>
   </div>
 </footer>
 
