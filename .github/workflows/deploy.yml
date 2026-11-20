@@ -36,6 +36,7 @@ jobs:
         run: pnpm build
         env:
           NEXT_PUBLIC_BASE_PATH: /vitaehogar
+          NEXT_PUBLIC_REGISTRO_URL: ${{ vars.REGISTRO_URL }}
 
       - uses: actions/configure-pages@v5
 

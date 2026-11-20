@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, type FormEvent } from 'react'
-import { ArrowRight, CalendarDays, Check, Clock3, MapPin, ShieldCheck } from 'lucide-react'
+import { ArrowRight, Check } from 'lucide-react'
 
 function getNextWeekdays(after: Date, count = 7) {
   const dates: Date[] = []
@@ -17,49 +17,97 @@ const times = ['07:00', '08:30', '10:00', '11:30']
 const weekdays = new Intl.DateTimeFormat('es', { weekday: 'short' })
 const monthDay = new Intl.DateTimeFormat('es', { day: 'numeric', month: 'short' })
 
+// URL del Apps Script que escribe en la hoja de calculo (se define en el build)
+const REGISTRO_URL = process.env.NEXT_PUBLIC_REGISTRO_URL || ''
+// PENDIENTE: numero real de WhatsApp (formato internacional sin +)
+const WA_NUMBER = '570000000000'
+
 export function BookingForm() {
   const [dates, setDates] = useState(() => getNextWeekdays(new Date()))
   const [selectedDate, setSelectedDate] = useState(0)
   const [selectedTime, setSelectedTime] = useState('08:30')
   const [submitted, setSubmitted] = useState(false)
+  const [guardado, setGuardado] = useState<'idle' | 'ok' | 'error'>('idle')
 
-  // PENDIENTE: reemplazar por el numero real de WhatsApp (formato internacional sin +)
-  const WA_NUMBER = '570000000000'
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    const form = event.currentTarget
+    const data = new FormData(form)
     const fecha = dates[selectedDate]
     const etiqueta = fecha
       ? new Intl.DateTimeFormat('es-CO', { weekday: 'long', day: 'numeric', month: 'long' }).format(fecha)
-      : 'la fecha elegida'
+      : ''
+
+    const payload = {
+      nombre: String(data.get('nombre') || ''),
+      telefono: String(data.get('telefono') || ''),
+      direccion: String(data.get('direccion') || ''),
+      examenes: String(data.get('examenes') || ''),
+      fecha: etiqueta,
+      hora: selectedTime,
+      acepta: data.get('acepta') === 'on',
+      origen: 'web',
+    }
+
+    if (REGISTRO_URL) {
+      try {
+        // text/plain evita el preflight CORS que Apps Script no responde
+        await fetch(REGISTRO_URL, {
+          method: 'POST',
+          mode: 'cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload),
+        })
+        setGuardado('ok')
+      } catch {
+        setGuardado('error')
+      }
+    }
+
     const mensaje =
       'Hola, quiero agendar una toma de muestras a domicilio.\n' +
+      'Nombre: ' + payload.nombre + '\n' +
+      'Teléfono: ' + payload.telefono + '\n' +
+      'Dirección: ' + payload.direccion + '\n' +
       'Fecha: ' + etiqueta + '\n' +
       'Hora: ' + selectedTime + '\n' +
-      'Mi nombre es: '
+      (payload.examenes ? 'Exámenes: ' + payload.examenes + '\n' : '')
+
     window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(mensaje), '_blank', 'noopener')
     setSubmitted(true)
   }
 
   return (
-    <section id="agendar" className="bg-[#f1f5f0] px-5 py-20 sm:px-8 md:py-28">
-      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
+    <section id="agendar" className="mono-section border-t border-[#e5e5e5]">
+      <div className="mono-wrap mono-two">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[.18em] text-[#6b9b7e]">Tu visita, a tu manera</p>
-          <h2 className="mt-4 max-w-lg text-4xl font-medium leading-tight tracking-[-.045em] sm:text-5xl">Elige el momento que mejor te viene.</h2>
-          <p className="mt-5 max-w-md leading-7 text-[#647a73]">Selecciona un día y horario para preparar tu solicitud de visita. Nuestro equipo confirmará la disponibilidad contigo.</p>
-          <div className="mt-8 flex items-center gap-3 text-sm text-[#58716b]"><ShieldCheck className="size-5 text-[#6b9b7e]" /> Tus datos se usan solo para coordinar la visita.</div>
-          <div className="mt-4 flex items-center gap-3 text-sm text-[#58716b]"><MapPin className="size-5 text-[#6b9b7e]" /> Servicio a domicilio, sujeto a cobertura.</div>
+          <p className="mono-kicker">Tu visita</p>
+          <h2 className="mono-h2">Elige el momento que mejor te viene.</h2>
+          <p className="mono-body">
+            Selecciona día y hora, deja tus datos y te confirmamos por WhatsApp. El registro queda guardado
+            para coordinar la visita.
+          </p>
+          <ul className="mono-benefits mono-benefits-light">
+            <li>
+              <h3>Tus datos se usan solo para coordinar la visita.</h3>
+              <p>No se comparten con terceros ni se usan para publicidad.</p>
+            </li>
+            <li>
+              <h3>Servicio a domicilio sujeto a cobertura.</h3>
+              <p>Medellín y área metropolitana.</p>
+            </li>
+          </ul>
         </div>
 
-        <form onSubmit={handleSubmit} className="min-w-0 rounded-[1.75rem] border border-[#e2e9e1] bg-white p-5 shadow-[0_24px_70px_-48px_rgba(24,61,56,.35)] sm:p-8">
+        <form onSubmit={handleSubmit} className="border border-[#e5e5e5] p-6 sm:p-8">
           <div className="flex items-center justify-between gap-4">
-            <div><div className="flex items-center gap-2 text-sm font-semibold"><CalendarDays className="size-4 text-[#6b9b7e]" /> Selecciona un día</div><p className="mt-1 text-xs text-[#82928c]">Desliza para explorar más fechas</p></div>
-            <span className="rounded-full bg-[#edf4ee] px-3 py-1.5 text-xs font-medium text-[#54836c]">Paso 1 de 2</span>
+            <p className="mono-kicker">Paso 1 · Día</p>
+            <span className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[#737373]">Desliza</span>
           </div>
+
           <div
             aria-label="Fechas disponibles para elegir"
-            className="mt-5 flex snap-x snap-mandatory gap-2 overflow-x-auto pb-2"
+            className="mt-4 flex snap-x snap-mandatory gap-2 overflow-x-auto pb-2"
             onScroll={(event) => {
               const strip = event.currentTarget
               if (strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 48) {
@@ -73,23 +121,123 @@ export function BookingForm() {
             tabIndex={0}
           >
             {dates.map((date, index) => (
-              <button key={date.toISOString()} type="button" aria-pressed={selectedDate === index} onClick={() => setSelectedDate(index)} className={`min-w-[4.65rem] snap-start rounded-xl border px-2 py-3 text-center transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6b9b7e] ${selectedDate === index ? 'border-[#367b66] bg-[#eaf3ec] text-[#183d38]' : 'border-[#e8ece7] bg-white text-[#71837d] hover:border-[#a9c8b2]'}`}>
-                <span className="block text-[11px] font-medium uppercase">{weekdays.format(date).replace('.', '')}</span><span className="mt-1 block text-sm font-semibold">{monthDay.format(date).replace('.', '')}</span>
+              <button
+                key={date.toISOString()}
+                type="button"
+                aria-pressed={selectedDate === index}
+                onClick={() => setSelectedDate(index)}
+                className={`min-w-[4.65rem] snap-start border px-2 py-3 text-center transition ${
+                  selectedDate === index
+                    ? 'border-[#0a0a0a] bg-[#0a0a0a] text-white'
+                    : 'border-[#e5e5e5] text-[#737373] hover:border-[#0a0a0a]'
+                }`}
+              >
+                <span className="block text-[11px] font-medium uppercase">{weekdays.format(date).replace('.', '')}</span>
+                <span className="mt-1 block text-sm font-semibold">{monthDay.format(date).replace('.', '')}</span>
               </button>
             ))}
           </div>
-          <div className="mt-7 flex items-center gap-2 text-sm font-semibold"><Clock3 className="size-4 text-[#6b9b7e]" /> Horario de visita</div>
+
+          <p className="mono-kicker mt-7">Paso 2 · Hora</p>
           <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
-            {times.map((time) => <button key={time} type="button" aria-pressed={selectedTime === time} onClick={() => setSelectedTime(time)} className={`rounded-xl border px-3 py-3 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6b9b7e] ${selectedTime === time ? 'border-[#367b66] bg-[#eaf3ec] text-[#183d38]' : 'border-[#e8ece7] text-[#71837d] hover:border-[#a9c8b2]'}`}>{time}</button>)}
+            {times.map((time) => (
+              <button
+                key={time}
+                type="button"
+                aria-pressed={selectedTime === time}
+                onClick={() => setSelectedTime(time)}
+                className={`border px-3 py-3 text-sm font-medium transition ${
+                  selectedTime === time
+                    ? 'border-[#0a0a0a] bg-[#0a0a0a] text-white'
+                    : 'border-[#e5e5e5] text-[#737373] hover:border-[#0a0a0a]'
+                }`}
+              >
+                {time}
+              </button>
+            ))}
           </div>
-          <div className="mt-7 grid gap-4 sm:grid-cols-2">
-            <label className="text-sm font-medium text-[#34534d]">Nombre completo<input required autoComplete="name" name="name" placeholder="¿Cómo te llamas?" className="mt-2 w-full rounded-xl border border-[#e2e9e1] bg-[#fcfdfb] px-4 py-3 text-sm outline-none transition placeholder:text-[#a2ada8] focus:border-[#6b9b7e] focus:ring-2 focus:ring-[#6b9b7e]/20" /></label>
-            <label className="text-sm font-medium text-[#34534d]">Teléfono de contacto<input required autoComplete="tel" inputMode="tel" name="phone" placeholder="Tu número de teléfono" className="mt-2 w-full rounded-xl border border-[#e2e9e1] bg-[#fcfdfb] px-4 py-3 text-sm outline-none transition placeholder:text-[#a2ada8] focus:border-[#6b9b7e] focus:ring-2 focus:ring-[#6b9b7e]/20" /></label>
+
+          <p className="mono-kicker mt-7">Paso 3 · Tus datos</p>
+          <div className="mt-3 grid gap-3 sm:grid-cols-2">
+            <label className="block">
+              <span className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[#737373]">Nombre completo</span>
+              <input
+                required
+                autoComplete="name"
+                name="nombre"
+                placeholder="¿Cómo te llamas?"
+                className="mt-2 w-full border border-[#e5e5e5] bg-white px-4 py-3 text-sm outline-none transition placeholder:text-[#a3a3a3] focus:border-[#0a0a0a]"
+              />
+            </label>
+            <label className="block">
+              <span className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[#737373]">Teléfono</span>
+              <input
+                required
+                autoComplete="tel"
+                inputMode="tel"
+                name="telefono"
+                placeholder="Tu número de contacto"
+                className="mt-2 w-full border border-[#e5e5e5] bg-white px-4 py-3 text-sm outline-none transition placeholder:text-[#a3a3a3] focus:border-[#0a0a0a]"
+              />
+            </label>
           </div>
-          <label className="mt-4 block text-sm font-medium text-[#34534d]">Dirección de visita<input required autoComplete="street-address" name="address" placeholder="Calle, número, colonia y ciudad" className="mt-2 w-full rounded-xl border border-[#e2e9e1] bg-[#fcfdfb] px-4 py-3 text-sm outline-none transition placeholder:text-[#a2ada8] focus:border-[#6b9b7e] focus:ring-2 focus:ring-[#6b9b7e]/20" /></label>
-          <button type="submit" className="mt-6 flex w-full items-center justify-center rounded-full bg-[#e78364] px-6 py-4 text-sm font-semibold text-white transition hover:bg-[#d87255] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d87255] focus-visible:ring-offset-2">Solicitar visita <ArrowRight className="ml-2 size-4" /></button>
-          {submitted && <div role="status" className="mt-4 rounded-xl border border-[#d5e8da] bg-[#f1f8f2] p-4 text-sm text-[#34534d]"><div className="flex items-center gap-2 font-semibold"><Check className="size-4 text-[#54836c]" /> Solicitud preparada</div><p className="mt-1 leading-6 text-[#647a73]">Elegiste {weekdays.format(dates[selectedDate])} {monthDay.format(dates[selectedDate])} a las {selectedTime}. Esta demostración no envía ni guarda tus datos; conecta un canal de contacto para recibir solicitudes reales.</p></div>}
-          <p className="mt-4 text-center text-xs leading-5 text-[#82928c]">No es una confirmación médica ni una cita confirmada. El equipo debe validar la disponibilidad.</p>
+          <label className="mt-3 block">
+            <span className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[#737373]">Dirección de la visita</span>
+            <input
+              required
+              autoComplete="street-address"
+              name="direccion"
+              placeholder="Barrio, calle, número"
+              className="mt-2 w-full border border-[#e5e5e5] bg-white px-4 py-3 text-sm outline-none transition placeholder:text-[#a3a3a3] focus:border-[#0a0a0a]"
+            />
+          </label>
+          <label className="mt-3 block">
+            <span className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[#737373]">Exámenes (opcional)</span>
+            <input
+              name="examenes"
+              placeholder="Hemograma, glucosa, perfil lipídico…"
+              className="mt-2 w-full border border-[#e5e5e5] bg-white px-4 py-3 text-sm outline-none transition placeholder:text-[#a3a3a3] focus:border-[#0a0a0a]"
+            />
+          </label>
+
+          <label className="mt-4 flex items-start gap-3 text-[0.78rem] leading-5 text-[#737373]">
+            <input
+              required
+              type="checkbox"
+              name="acepta"
+              className="mt-0.5 size-4 shrink-0 border border-[#0a0a0a] accent-[#0a0a0a]"
+            />
+            <span>
+              Autorizo el tratamiento de mis datos personales para coordinar la visita, conforme a la Ley 1581
+              de 2011.
+            </span>
+          </label>
+
+          <button
+            type="submit"
+            className="mt-6 flex w-full items-center justify-center gap-2 bg-[#0a0a0a] px-6 py-4 text-sm font-semibold text-white transition hover:bg-[#1f1f1f]"
+          >
+            Enviar solicitud <ArrowRight className="size-4" />
+          </button>
+
+          {submitted && (
+            <div role="status" className="mt-4 border border-[#e5e5e5] p-4 text-sm">
+              <div className="flex items-center gap-2 font-semibold text-[#0a0a0a]">
+                <Check className="size-4" /> Solicitud enviada
+              </div>
+              <p className="mt-1 leading-6 text-[#737373]">
+                {weekdays.format(dates[selectedDate])} {monthDay.format(dates[selectedDate])} a las{' '}
+                {selectedTime}.
+                {guardado === 'ok' && ' Quedó registrada y abrimos WhatsApp para confirmar.'}
+                {guardado === 'error' && ' No pudimos registrarla en el sistema, pero se abrió WhatsApp con tus datos.'}
+                {guardado === 'idle' && ' Abrimos WhatsApp con tus datos para confirmar la visita.'}
+              </p>
+            </div>
+          )}
+
+          <p className="mt-4 text-[0.7rem] leading-5 text-[#a3a3a3]">
+            No es una cita confirmada: el equipo valida la disponibilidad y te responde por WhatsApp.
+          </p>
         </form>
       </div>
     </section>
