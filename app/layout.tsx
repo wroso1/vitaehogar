@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from 'next'
+import { Inter } from 'next/font/google'
 import './globals.css'
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
 
 export const metadata: Metadata = {
   title: 'Vitae Hogar | Toma de muestras de sangre a domicilio en Medellín',
@@ -36,7 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className="antialiased">
+      <body className={`${inter.variable} antialiased`}>
         {children}
       </body>
     </html>
