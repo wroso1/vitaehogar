@@ -77,7 +77,7 @@ export default function Page() {
         </div>
       </section>
 
-        <div className="mx-auto mt-1 flex max-w-7xl justify-center px-5 sm:px-8" data-scroll-cue>
+        <div className="scroll-cue-wrap" data-scroll-cue>
           <span className="scroll-cue">Desliza<span className="scroll-cue-line" /></span>
         </div>
 

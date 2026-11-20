@@ -552,3 +552,15 @@ html.lenis body {
   .scroll-cue-line { animation: none; }
   [data-hero-copy], [data-hero-media] { transform: none !important; opacity: 1 !important; }
 }
+
+.health-page > .scroll-cue-wrap {
+  position: fixed;
+  left: 50%;
+  bottom: 14px;
+  z-index: 40;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue-wrap { display: none; }
+}
