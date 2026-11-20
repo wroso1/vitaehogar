@@ -494,3 +494,61 @@ html.lenis body {
     display: none;
   }
 }
+
+/* ------------------------ entrada del hero (sin scroll) ------------------- */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hero-rise {
+  animation: hero-rise 0.95s cubic-bezier(0.16, 0.8, 0.26, 1) both;
+}
+.hero-d1 { animation-delay: 0.1s; }
+.hero-d2 { animation-delay: 0.2s; }
+.hero-d3 { animation-delay: 0.3s; }
+.hero-d4 { animation-delay: 0.42s; }
+
+[data-hero-copy] {
+  will-change: transform, opacity;
+}
+[data-hero-media] {
+  will-change: transform;
+  transform-origin: 50% 30%;
+}
+[data-scroll-cue] {
+  transition: opacity 0.25s linear;
+}
+.scroll-cue {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8aa196;
+}
+.scroll-cue-line {
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(180deg, #b8cdbf, transparent);
+  animation: cue-drop 1.9s ease-in-out infinite;
+  transform-origin: top center;
+}
+@keyframes cue-drop {
+  0%, 100% { transform: scaleY(0.45); opacity: 0.5; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise { animation: none; }
+  .scroll-cue-line { animation: none; }
+  [data-hero-copy], [data-hero-media] { transform: none !important; opacity: 1 !important; }
+}

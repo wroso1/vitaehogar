@@ -18,7 +18,7 @@ export function ScrollExperience() {
     let lenisFrame = 0
 
     if (!reduce) {
-      lenis = new Lenis({ duration: 1.05, smoothWheel: true, touchMultiplier: 1.6 })
+      lenis = new Lenis({ duration: 1.2, smoothWheel: true, touchMultiplier: 1.7, wheelMultiplier: 1.05 })
       const raf = (time: number) => {
         lenis?.raf(time)
         lenisFrame = window.requestAnimationFrame(raf)
@@ -57,6 +57,22 @@ export function ScrollExperience() {
         const offset = Math.max(-limit, Math.min(limit, y * speed))
         el.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`
       })
+
+      const heroCopy = document.querySelector<HTMLElement>('[data-hero-copy]')
+      if (heroCopy) {
+        const shift = Math.min(120, y * 0.11)
+        heroCopy.style.transform = `translate3d(0, ${shift.toFixed(1)}px, 0)`
+        heroCopy.style.opacity = String(Math.max(0, 1 - y / 860))
+      }
+
+      const heroMedia = document.querySelector<HTMLElement>('[data-hero-media]')
+      if (heroMedia) {
+        const mediaShift = Math.min(90, y * 0.075)
+        heroMedia.style.transform = `translate3d(0, ${mediaShift.toFixed(1)}px, 0) scale(${Math.min(1.05, 1 + y * 0.00012).toFixed(4)})`
+      }
+
+      const cue = document.querySelector<HTMLElement>('[data-scroll-cue]')
+      if (cue) cue.style.opacity = String(Math.max(0, 1 - y / 140))
 
       const bar = document.getElementById('scroll-progress')
       if (bar) {
