@@ -1,249 +1,456 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CO">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Toma de Muestras de Sangre a Domicilio Medellín | Vitae Hogar</title>
-<meta name="description" content="Toma de muestras de sangre a domicilio en Medellín. Enfermera profesional, insumos estériles, resultados en 24-48h. Agenda HOY por WhatsApp.">
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<script>
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        brand: { 50:'#eef7ff', 100:'#d9ecff', 400:'#3b93f0', 500:'#046BD2', 600:'#045cb4', 700:'#034a94', 900:'#0a2a52' },
-        dark: '#1f2124',
-      },
-      fontFamily: { sans: ['Poppins', 'sans-serif'] }
-    }
-  }
-}
-</script>
+<meta name="theme-color" content="#05070D">
+<meta name="color-scheme" content="dark">
+<title>Toma de Muestras de Sangre a Domicilio en Medellín | Vitae Hogar</title>
+<meta name="description" content="Toma de muestras de sangre a domicilio en Medellín. Enfermera profesional con ReTHUS, insumos estériles y resultados en 24-48h. Agenda hoy por WhatsApp.">
+<link rel="canonical" href="https://wroso1.github.io/vitaehogar/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Toma de Muestras de Sangre a Domicilio en Medellín | Vitae Hogar">
+<meta property="og:description" content="Enfermera profesional a domicilio. Insumos estériles, resultados en 24-48h. Medellín y área metropolitana.">
+<meta property="og:url" content="https://wroso1.github.io/vitaehogar/">
+<meta property="og:locale" content="es_CO">
+<meta property="og:image" content="https://wroso1.github.io/vitaehogar/img/hero-enfermera.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2305070D'/%3E%3Cpath d='M32 14v36M14 32h36' stroke='%2322D3EE' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
 <style>
-  .hero-mask { clip-path: ellipse(130% 90% at 50% 0%); }
-  .card-hover { transition: transform .3s, box-shadow .3s; }
-  .card-hover:hover { transform: translateY(-6px); box-shadow: 0 22px 44px rgba(4,107,210,.16); }
+/* ============================== base ============================== */
+:root{
+  --bg:#05070D; --txt:#E9F6FF; --muted:#8CA3BB;
+  --cyan:#22D3EE; --teal:#2DD4BF; --lime:#A3E635;
+  --line:rgba(130,220,255,.14); --panel:rgba(255,255,255,.045);
+  --font:"Space Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"Cascadia Mono","Roboto Mono",monospace;
+  --r:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:var(--font);font-size:16px;
+  line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,h4{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:700}
+p{margin:0}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+.mono{font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;font-size:11px}
+
+/* ============================== fondo ============================== */
+.bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:
+  radial-gradient(80% 55% at 50% -10%, rgba(34,211,238,.16), transparent 62%),
+  radial-gradient(60% 45% at 100% 12%, rgba(139,92,246,.13), transparent 60%),
+  radial-gradient(70% 50% at 0% 40%, rgba(45,212,191,.10), transparent 60%),
+  linear-gradient(180deg,#05070D 0%,#070B14 45%,#05070D 100%)}
+.bg::before{content:"";position:absolute;inset:0;opacity:.5;background-image:
+  linear-gradient(rgba(120,220,255,.055) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(120,220,255,.055) 1px,transparent 1px);
+  background-size:64px 64px;mask-image:radial-gradient(70% 60% at 50% 20%,#000 30%,transparent 85%)}
+.bg::after{content:"";position:absolute;inset:-20% -10% auto -10%;height:70%;
+  background:radial-gradient(45% 45% at 30% 20%,rgba(34,211,238,.2),transparent 70%);
+  filter:blur(60px);animation:drift 18s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate3d(6%,4%,0) scale(1.08)}}
+
+/* ============================== barra urgencia ============================== */
+.urgent{background:linear-gradient(90deg,rgba(163,230,53,.14),rgba(34,211,238,.14));
+  border-bottom:1px solid var(--line)}
+.urgent .wrap{display:flex;align-items:center;gap:10px;justify-content:center;
+  padding:9px 0;font-size:13.5px;flex-wrap:wrap;text-align:center}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--lime);flex:0 0 auto;
+  box-shadow:0 0 0 0 rgba(163,230,53,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(163,230,53,0)}100%{box-shadow:0 0 0 0 rgba(163,230,53,0)}}
+
+/* ============================== nav ============================== */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  background:rgba(5,7,13,.72);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand-mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;
+  background:linear-gradient(140deg,rgba(34,211,238,.22),rgba(139,92,246,.22));
+  border:1px solid rgba(34,211,238,.45);box-shadow:0 0 24px -6px rgba(34,211,238,.6)}
+.brand-mark svg{width:18px;height:18px}
+.brand b{display:block;font-size:16px;letter-spacing:-.01em}
+.brand span{display:block;font-size:10.5px;color:var(--muted);letter-spacing:.07em;text-transform:uppercase}
+.nav-links{display:none;gap:22px;font-size:14px;color:var(--muted)}
+.nav-links a{text-decoration:none}
+.nav-links a:hover{color:var(--txt)}
+@media(min-width:820px){.nav-links{display:flex}}
+@media(max-width:520px){.brand > span > span{display:none} .brand b{font-size:15px}}
+
+/* ============================== botones ============================== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  min-height:52px;padding:0 26px;border-radius:14px;font-weight:600;font-size:15.5px;
+  text-decoration:none;border:1px solid transparent;cursor:pointer;
+  transition:transform .18s,box-shadow .18s,background .18s}
+.btn-primary{background:linear-gradient(100deg,var(--cyan),var(--teal));color:#04222A;
+  box-shadow:0 16px 40px -16px rgba(34,211,238,.85)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 22px 52px -18px rgba(34,211,238,.95)}
+.btn-ghost{background:var(--panel);border-color:var(--line);color:var(--txt)}
+.btn-ghost:hover{border-color:rgba(34,211,238,.5);transform:translateY(-2px)}
+.btn-sm{min-height:42px;padding:0 18px;font-size:14px;border-radius:11px}
+
+/* ============================== hero ============================== */
+.hero{padding:clamp(40px,6vw,86px) 0 clamp(36px,5vw,66px)}
+.hero-grid{display:grid;gap:38px;align-items:center}
+@media(min-width:960px){.hero-grid{grid-template-columns:1.06fr .94fr;gap:54px}}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:100px;
+  background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.3);font-size:12.5px;color:#BDEBFA}
+.hero h1{font-size:clamp(2.15rem,6.2vw,3.9rem);margin:18px 0 0}
+.hero h1 em{font-style:normal;background:linear-gradient(100deg,var(--cyan),var(--teal) 60%,#A5F3FC);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{margin-top:18px;color:var(--muted);font-size:clamp(15px,2.4vw,17.5px);max-width:52ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.checks{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:26px;font-size:14px;color:#B7CBDD}
+.checks span{display:inline-flex;align-items:center;gap:7px}
+.checks svg{width:16px;height:16px;flex:0 0 auto}
+
+.vitals{position:relative;border-radius:24px;padding:20px;background:
+  linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+  border:1px solid var(--line);box-shadow:0 40px 90px -50px rgba(34,211,238,.55);
+  overflow:hidden;backdrop-filter:blur(10px)}
+.vitals::after{content:"";position:absolute;left:0;right:0;top:0;height:120px;
+  background:linear-gradient(180deg,rgba(34,211,238,.14),transparent);
+  animation:scan 5s linear infinite;pointer-events:none}
+@keyframes scan{0%{transform:translateY(-130px)}100%{transform:translateY(360px)}}
+.vitals-top{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--muted)}
+.vitals-top b{color:var(--txt);font-size:13px}
+.ecg{width:100%;height:70px;margin:12px 0 4px}
+.ecg path{fill:none;stroke:var(--cyan);stroke-width:2.4;stroke-linecap:round;
+  filter:drop-shadow(0 0 6px rgba(34,211,238,.9));
+  stroke-dasharray:420;stroke-dashoffset:420;animation:trace 3.6s linear infinite}
+@keyframes trace{0%{stroke-dashoffset:420}70%{stroke-dashoffset:0}100%{stroke-dashoffset:-420}}
+.vitals-kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:6px}
+.kpi{padding:11px 8px;border-radius:12px;background:rgba(255,255,255,.04);
+  border:1px solid rgba(130,220,255,.1);text-align:center}
+.kpi b{display:block;font-size:16px;letter-spacing:-.01em}
+.kpi span{font-size:10px;color:var(--muted)}
+.photo{margin-top:16px;border-radius:16px;overflow:hidden;border:1px solid var(--line);position:relative}
+.photo img{width:100%;height:180px;object-fit:cover;filter:saturate(.92) contrast(1.05)}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(5,7,13,.8))}
+.photo .cap{position:absolute;left:14px;right:14px;bottom:12px;font-size:12px;color:#CFE9F7;z-index:1}
+
+/* ============================== secciones ============================== */
+section{padding:clamp(42px,6vw,80px) 0}
+.kicker{display:inline-flex;align-items:center;gap:9px;color:var(--cyan);margin-bottom:14px}
+.kicker::before{content:"";width:26px;height:1px;background:var(--cyan)}
+h2{font-size:clamp(1.65rem,4.2vw,2.5rem)}
+.sub{margin-top:12px;color:var(--muted);max-width:58ch}
+
+.grid-4{display:grid;gap:16px;margin-top:32px}
+@media(min-width:700px){.grid-4{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.grid-4{grid-template-columns:repeat(4,1fr)}}
+.card{padding:22px;border-radius:var(--r);background:var(--panel);border:1px solid var(--line);
+  transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(60% 60% at 20% 0%,rgba(34,211,238,.16),transparent 70%);
+  opacity:0;transition:opacity .25s}
+.card:hover{transform:translateY(-4px);border-color:rgba(34,211,238,.45);
+  box-shadow:0 26px 60px -34px rgba(34,211,238,.8)}
+.card:hover::before{opacity:1}
+.card .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;margin-bottom:14px;
+  background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.28)}
+.card .ico svg{width:20px;height:20px;stroke:var(--cyan);fill:none;stroke-width:1.7;stroke-linecap:round}
+.card h3{font-size:17px;margin-bottom:8px}
+.card p{color:var(--muted);font-size:14.5px}
+.card .tag{margin-top:14px;display:inline-block;padding:4px 10px;border-radius:8px;
+  background:rgba(163,230,53,.12);color:var(--lime);font-size:11px;font-family:var(--mono)}
+
+/* pasos + foto */
+.two{display:grid;gap:34px;align-items:center;margin-top:6px}
+@media(min-width:900px){.two{grid-template-columns:1.05fr .95fr;gap:48px}}
+.steps{display:grid;gap:14px;margin-top:26px}
+.step{padding:20px;border-radius:var(--r);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
+  border:1px solid var(--line)}
+.step .n{font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:.12em}
+.step h3{margin:10px 0 6px;font-size:16.5px}
+.step p{color:var(--muted);font-size:14.5px}
+.frame{border-radius:22px;overflow:hidden;border:1px solid var(--line);position:relative;
+  box-shadow:0 40px 90px -55px rgba(34,211,238,.6)}
+.frame img{width:100%;height:clamp(240px,42vw,380px);object-fit:cover;filter:saturate(.92) contrast(1.06)}
+.frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(5,7,13,.75))}
+.frame .badge{position:absolute;left:14px;bottom:14px;z-index:1;padding:9px 13px;border-radius:12px;
+  background:rgba(5,7,13,.75);border:1px solid var(--line);backdrop-filter:blur(8px);font-size:12.5px}
+.frame .badge b{display:block;font-size:13px}
+.frame .badge span{color:var(--muted);font-size:11px}
+
+/* urgencia */
+.urgent-panel{border-radius:22px;padding:clamp(24px,4vw,38px);position:relative;overflow:hidden;
+  background:linear-gradient(120deg,rgba(163,230,53,.14),rgba(34,211,238,.1) 60%,transparent);
+  border:1px solid rgba(163,230,53,.32)}
+.urgent-panel h2{font-size:clamp(1.4rem,3.6vw,2rem);margin-top:10px}
+.urgent-panel p{margin-top:12px;color:#CFE3D8;max-width:60ch}
+
+/* cobertura */
+.cover{display:grid;gap:28px;align-items:center}
+@media(min-width:900px){.cover{grid-template-columns:1.05fr .95fr;gap:48px}}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+.chip{padding:8px 14px;border-radius:10px;background:rgba(255,255,255,.04);
+  border:1px solid var(--line);font-size:13.5px;color:#C4D8E8}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:22px}
+.stat{padding:16px;border-radius:14px;background:var(--panel);border:1px solid var(--line)}
+.stat b{display:block;font-size:clamp(1.15rem,3vw,1.5rem);letter-spacing:-.02em;
+  background:linear-gradient(100deg,var(--cyan),var(--teal));-webkit-background-clip:text;
+  background-clip:text;color:transparent}
+.stat span{font-size:11.5px;color:var(--muted)}
+
+/* faq */
+.faq{margin-top:28px;display:grid;gap:10px}
+details{border-radius:14px;background:var(--panel);border:1px solid var(--line)}
+details[open]{border-color:rgba(34,211,238,.35)}
+summary{cursor:pointer;padding:17px 20px;font-weight:600;font-size:15.5px;list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:14px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--mono);color:var(--cyan);font-size:18px}
+details[open] summary::after{content:"–"}
+details p{padding:0 20px 18px;color:var(--muted);font-size:14.5px}
+
+/* cta final */
+.final{border-radius:26px;padding:clamp(30px,6vw,56px);text-align:center;position:relative;overflow:hidden;
+  background:radial-gradient(70% 120% at 50% 0%,rgba(34,211,238,.2),transparent 60%),
+             linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  border:1px solid rgba(34,211,238,.32);box-shadow:0 50px 120px -60px rgba(34,211,238,.7)}
+.final h2{font-size:clamp(1.55rem,4.4vw,2.5rem)}
+.final p{margin-top:14px;color:var(--muted);max-width:52ch;margin-inline:auto}
+.final .btn{margin-top:24px}
+
+footer{border-top:1px solid var(--line);padding:32px 0 40px;margin-top:16px;color:var(--muted);font-size:13.5px}
+.foot{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
+.foot small{display:block;font-size:11.5px;opacity:.72;margin-top:4px}
+
+.reveal{opacity:0;transform:translateY(20px);
+  transition:opacity .65s cubic-bezier(.22,.68,.3,1),transform .65s cubic-bezier(.22,.68,.3,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .bg::after,.vitals::after,.ecg path,.dot{animation:none}
+  .ecg path{stroke-dashoffset:0}
+}
 </style>
 </head>
-<body class="font-sans bg-white text-dark">
+<body>
+<div class="bg" aria-hidden="true"></div>
 
-<!-- Barra superior urgencia -->
-<div class="bg-brand-900 text-white text-center text-sm py-2 px-4 font-medium">
-  🚨 ¿Necesitas tu muestra de sangre HOY? Agenda antes de las 6am y te visitamos el mismo día →
-  <a href="https://wa.me/570000000000" target="_blank" class="underline font-bold ml-1">Escríbenos ya</a>
+<div class="urgent">
+  <div class="wrap">
+    <span class="dot" aria-hidden="true"></span>
+    <span>Agenda antes de las 6am y te visitamos <b>el mismo día</b></span>
+  </div>
 </div>
 
-<!-- Header -->
-<header class="bg-white/95 backdrop-blur fixed w-full top-[32px] z-50 shadow-sm">
-  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-    <div class="flex items-center gap-2">
-      <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">V</div>
-      <div>
-        <h1 class="font-bold text-brand-900 leading-tight">Vitae Hogar</h1>
-        <p class="text-[11px] text-brand-500 font-medium">Toma de muestras a domicilio</p>
-      </div>
-    </div>
-    <a href="https://wa.me/570000000000?text=Hola%2C%20quiero%20agendar%20una%20toma%20de%20muestras%20a%20domicilio" target="_blank"
-       class="bg-[#05d204] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:brightness-110 transition shadow-lg">💬 WhatsApp</a>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Vitae Hogar, inicio">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#7DEBFF" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      </span>
+      <span>
+        <b>Vitae Hogar</b>
+        <span>Toma de muestras a domicilio</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#como">Cómo funciona</a>
+      <a href="#cobertura">Cobertura</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="https://wa.me/570000000000?text=Hola%2C%20quiero%20agendar%20una%20toma%20de%20muestras%20a%20domicilio" target="_blank" rel="noopener">WhatsApp</a>
   </div>
 </header>
 
-<!-- HERO con foto -->
-<section class="hero-mask bg-gradient-to-b from-brand-50 to-white pt-44 pb-20 px-4">
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="pill"><span class="dot" aria-hidden="true"></span> Enfermería profesional · ReTHUS vigente</span>
+        <h1>Toma de muestras de sangre <em>a domicilio</em> en Medellín</h1>
+        <p class="lead">Una enfermera profesional llega a tu casa, toma la muestra con bioseguridad total y la procesa un laboratorio aliado. Sin filas, sin desplazamientos.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="https://wa.me/570000000000?text=Hola%2C%20quiero%20agendar%20una%20toma%20de%20muestras%20a%20domicilio" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2 22l5.36-1.4a9.8 9.8 0 0 0 4.68 1.19c5.43 0 9.84-4.4 9.84-9.84C21.89 6.4 17.47 2 12.04 2Zm5.76 14.05c-.24.68-1.4 1.3-1.93 1.34-.53.05-1.03.24-3.45-.9-2.42-1.14-3.9-3.66-4.02-3.83-.12-.17-.95-1.32-.95-2.5s.6-1.77.82-2.01c.21-.24.46-.3.61-.3l.44.01c.14 0 .33-.05.51.39.19.46.65 1.6.71 1.72.06.12.1.25.02.4-.09.17-.13.27-.26.42l-.35.4c-.12.12-.24.25-.11.48.13.24.58.96 1.24 1.55.85.75 1.56.99 1.79 1.1.23.12.36.1.5-.06.13-.16.57-.66.72-.89.15-.23.3-.19.5-.12.2.08 1.28.6 1.5.71.22.11.37.17.42.26.05.1.05.55-.19 1.23Z"/></svg>
+            Agendar por WhatsApp
+          </a>
+          <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
+        </div>
+        <div class="checks">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="2.4" stroke-linecap="round"><path d="m4 12 5 5L20 6"/></svg> Mismo día</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="2.4" stroke-linecap="round"><path d="m4 12 5 5L20 6"/></svg> Insumos estériles</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="2.4" stroke-linecap="round"><path d="m4 12 5 5L20 6"/></svg> Adultos mayores y niños</span>
+        </div>
+      </div>
+
+      <div class="vitals reveal">
+        <div class="vitals-top">
+          <b>Monitoreo de servicio</b>
+          <span class="mono" style="color:#2DD4BF">activo</span>
+        </div>
+        <svg class="ecg" viewBox="0 0 320 74" aria-hidden="true">
+          <path d="M0 46h38l8-14 9 26 9-38 10 52 10-26 7 6h44l8-12 8 22 9-30 9 34 9-14h53l8-10 9 20 9-26 9 30 8-14h53"/>
+        </svg>
+        <div class="vitals-kpi">
+          <div class="kpi"><b>24-48h</b><span>Resultados</span></div>
+          <div class="kpi"><b>6am-6pm</b><span>Lun a sáb</span></div>
+          <div class="kpi"><b>100%</b><span>Estéril</span></div>
+        </div>
+        <div class="photo">
+          <img src="img/hero-enfermera.jpg" alt="Enfermera profesional de Vitae Hogar tomando una muestra de sangre a domicilio en Medellín" width="800" height="600" fetchpriority="high">
+          <span class="cap">Enfermera profesional · Tarjeta profesional y ReTHUS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="urgent-panel reveal">
+        <span class="mono" style="color:#A3E635">Prioridad hoy</span>
+        <h2>¿Necesitas tu toma de muestra HOY mismo?</h2>
+        <p>Atendemos urgencias con cita previa. Agenda antes de las 6am y te visitamos el mismo día en Medellín y el área metropolitana.</p>
+        <a class="btn btn-primary" style="margin-top:22px" href="https://wa.me/570000000000?text=Hola%2C%20es%20URGENTE%2C%20necesito%20una%20toma%20de%20muestra%20HOY" target="_blank" rel="noopener">Pedir servicio urgente</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="wrap">
+      <span class="kicker mono">Servicios</span>
+      <h2>Especialistas en muestras de sangre a domicilio</h2>
+      <p class="sub">Venopunción profesional para cualquier orden de EPS o particular, en la comodidad de tu casa.</p>
+      <div class="grid-4">
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v6m0 0a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/></svg></div>
+          <h3>Toma de muestras de sangre</h3>
+          <p>Hemograma, glucosa, perfil hepático y renal, hormonas y tiroides. Cualquier orden médica.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-7-10a7 7 0 0 1 14 0c0 5.4-7 10-7 10Z"/><circle cx="12" cy="11" r="2.5"/></svg></div>
+          <h3>Adultos mayores</h3>
+          <p>Atención con paciencia y calidez. Sin filas ni desplazamientos para nuestros pacientes de oro.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-3.4 3.1-5.4 7-5.4s7 2 7 5.4"/></svg></div>
+          <h3>Niños y gestantes</h3>
+          <p>Técnica delicada y trato amable para los más pequeños y para mamás embarazadas.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-4 8a3 3 0 0 0 2.7 4h6.6a3 3 0 0 0 2.7-4l-4-8V3"/></svg></div>
+          <h3>Laboratorio aliado</h3>
+          <p>Procesamiento certificado con resultados en 24-48 horas y aviso por WhatsApp.</p>
+          <span class="tag">24-48h</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="como">
+    <div class="wrap two">
+      <div>
+        <span class="kicker mono">Proceso</span>
+        <h2>¿Cómo funciona?</h2>
+        <p class="sub">Tres pasos y la muestra ya está en camino al laboratorio.</p>
+        <div class="steps">
+          <div class="step reveal"><span class="n">01</span><h3>Escríbenos por WhatsApp</h3><p>Envía tu orden médica y coordina la visita. Respondemos en minutos.</p></div>
+          <div class="step reveal"><span class="n">02</span><h3>La enfermera llega a tu casa</h3><p>Venopunción con insumos estériles de un solo uso y bioseguridad total.</p></div>
+          <div class="step reveal"><span class="n">03</span><h3>Resultados a tu correo</h3><p>La muestra se procesa en el laboratorio aliado y te avisamos por WhatsApp.</p></div>
+        </div>
+      </div>
+      <figure class="frame reveal" style="margin:0">
+        <img src="img/tubos-sangre.jpg" alt="Tubos de muestra de sangre listos para el laboratorio aliado" width="800" height="600" loading="lazy">
+        <figcaption class="badge"><b>Laboratorio aliado</b><span>Resultados en 24-48h</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="cobertura">
+    <div class="wrap cover">
+      <div>
+        <span class="kicker mono">Cobertura</span>
+        <h2>Medellín y área metropolitana</h2>
+        <p class="sub">Visitamos tu casa en cualquiera de estas zonas. Confirmamos cobertura al agendar.</p>
+        <div class="chips">
+          <span class="chip">Medellín</span><span class="chip">Envigado</span><span class="chip">Itagüí</span>
+          <span class="chip">Sabaneta</span><span class="chip">Bello</span><span class="chip">La Estrella</span>
+        </div>
+        <div class="stats">
+          <div class="stat reveal"><b>6am-6pm</b><span>Lunes a sábado</span></div>
+          <div class="stat reveal"><b>24-48h</b><span>Resultados</span></div>
+          <div class="stat reveal"><b>100%</b><span>Insumos estériles</span></div>
+          <div class="stat reveal"><b>ReTHUS</b><span>Registro vigente</span></div>
+        </div>
+      </div>
+      <figure class="frame reveal" style="margin:0">
+        <img src="img/adulto-mayor.jpg" alt="Paciente adulta mayor atendida en su casa por una enfermera de Vitae Hogar" width="800" height="600" loading="lazy">
+        <figcaption class="badge"><b>Atención en casa</b><span>Pacientes de oro</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <span class="kicker mono">Preguntas frecuentes</span>
+      <h2>Lo que suelen preguntarnos</h2>
+      <div class="faq">
+        <details><summary>¿Necesito orden médica?</summary><p>Sí, de cualquier EPS o particular. Envíala por WhatsApp al agendar.</p></details>
+        <details><summary>¿Cuánto cuesta?</summary><p>El servicio incluye desplazamiento y toma profesional. Cotizamos al momento según tu zona y los exámenes.</p></details>
+        <details><summary>¿Cómo pago?</summary><p>Nequi, Daviplata o efectivo al momento de la toma.</p></details>
+        <details><summary>¿Cuándo llegan los resultados?</summary><p>Los exámenes básicos en 24-48 horas; los especiales de 3 a 5 días. Te avisamos por WhatsApp.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="final reveal">
+        <span class="kicker mono">Vitae Hogar</span>
+        <h2>Contrata hoy tu toma de muestra en Medellín</h2>
+        <p>Sin filas, sin esperas, sin salir de casa. Solo envíanos tu orden médica.</p>
+        <a class="btn btn-primary" href="https://wa.me/570000000000?text=Hola%2C%20quiero%20agendar%20una%20toma%20de%20muestras%20a%20domicilio" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
     <div>
-      <h2 class="text-4xl md:text-5xl font-extrabold text-brand-900 leading-tight mb-4">
-        Toma de Muestras de Sangre a Domicilio en <span class="text-brand-500">Medellín</span>
-      </h2>
-      <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-        Enfermera profesional llega a tu casa, toma la muestra con bioseguridad total
-        y la procesa un laboratorio aliado. Sin filas, sin salir de casa.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-3">
-        <a href="https://wa.me/570000000000?text=Hola%2C%20quiero%20agendar%20una%20toma%20de%20muestras%20a%20domicilio" target="_blank"
-           class="bg-[#05d204] text-white font-bold px-8 py-4 rounded-full hover:brightness-110 transition shadow-xl text-center">
-          💬 Agendar por WhatsApp
-        </a>
-        <a href="#servicios" class="bg-white text-brand-700 font-semibold px-8 py-4 rounded-full border-2 border-brand-100 hover:border-brand-400 transition text-center">
-          Ver servicios
-        </a>
-      </div>
-      <div class="flex flex-wrap gap-5 text-sm text-gray-500 font-medium mt-6">
-        <span>✅ Mismo día</span>
-        <span>✅ Insumos estériles</span>
-        <span>✅ Adultos mayores y niños</span>
-      </div>
-    </div>
-    <div class="relative">
-      <img src="img/hero-enfermera.jpg" alt="Enfermera profesional atendiendo paciente en su casa en Medellín" class="rounded-3xl shadow-2xl w-full object-cover">
-      <div class="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-xl px-5 py-3 flex items-center gap-3">
-        <span class="text-2xl">👩‍⚕️</span>
-        <div>
-          <p class="font-bold text-brand-900 text-sm">Enfermera profesional</p>
-          <p class="text-xs text-gray-500">Tarjeta profesional · ReTHUS</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- URGENCIA -->
-<section class="py-14 px-4 bg-brand-900">
-  <div class="max-w-4xl mx-auto text-center">
-    <h3 class="text-2xl md:text-3xl font-extrabold text-white mb-3">¿Necesitas tu toma de muestra HOY mismo?</h3>
-    <p class="text-brand-100 mb-6">Atendemos urgentes con cita previa. Agenda antes de las 6am y te visitamos el mismo día en Medellín y área metropolitana.</p>
-    <a href="https://wa.me/570000000000?text=Hola%2C%20es%20URGENTE%2C%20necesito%20una%20toma%20de%20muestra%20HOY" target="_blank"
-       class="inline-block bg-[#05d204] text-white font-bold px-8 py-3.5 rounded-full hover:brightness-110 transition shadow-lg text-lg">
-      ⚡ Pedir servicio urgente
-    </a>
-  </div>
-</section>
-
-<!-- SERVICIOS -->
-<section id="servicios" class="py-20 px-4 bg-white">
-  <div class="max-w-6xl mx-auto">
-    <h3 class="text-3xl font-extrabold text-center text-brand-900 mb-2">Servicios de Toma de Muestras</h3>
-    <p class="text-center text-gray-500 mb-12">Especialistas en muestras de sangre a domicilio en Medellín</p>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="card-hover bg-brand-50 rounded-2xl p-6 border border-brand-100">
-        <span class="text-4xl">🩸</span>
-        <h4 class="font-bold text-brand-900 text-lg mt-3 mb-2">Toma de muestras de sangre</h4>
-        <p class="text-sm text-gray-600">Venopunción para hemograma, glucosa, perfilería hepática/renal, hormonas y tiroides. Orden de cualquier EPS o particular.</p>
-      </div>
-      <div class="card-hover bg-brand-50 rounded-2xl p-6 border border-brand-100">
-        <span class="text-4xl">👵</span>
-        <h4 class="font-bold text-brand-900 text-lg mt-3 mb-2">Adultos mayores</h4>
-        <p class="text-sm text-gray-600">Atención con paciencia y calidez. Sin filas ni desplazamientos para pacientes de oro.</p>
-      </div>
-      <div class="card-hover bg-brand-50 rounded-2xl p-6 border border-brand-100">
-        <span class="text-4xl">👶</span>
-        <h4 class="font-bold text-brand-900 text-lg mt-3 mb-2">Niños y gestantes</h4>
-        <p class="text-sm text-gray-600">Técnica delicada y trato amable para los más pequeños y mamás embarazadas.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CON FOTO: cómo funciona -->
-<section class="py-20 px-4 bg-brand-50">
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-    <div class="relative order-2 md:order-1">
-      <img src="img/tubos-sangre.jpg" alt="Tubos de muestra de sangre listos para el laboratorio" class="rounded-3xl shadow-2xl w-full object-cover">
-      <div class="absolute -top-5 -right-5 bg-white rounded-2xl shadow-xl px-5 py-3">
-        <p class="font-bold text-brand-900 text-sm">🔬 Laboratorio aliado</p>
-        <p class="text-xs text-gray-500">Resultados en 24–48h</p>
-      </div>
-    </div>
-    <div class="order-1 md:order-2">
-      <h3 class="text-3xl font-extrabold text-brand-900 mb-8">¿Cómo funciona?</h3>
-      <div class="space-y-5">
-        <div class="flex gap-4">
-          <span class="w-9 h-9 bg-brand-500 text-white rounded-full flex items-center justify-center font-bold shrink-0">1</span>
-          <div>
-            <h4 class="font-bold text-brand-900">Escríbenos por WhatsApp</h4>
-            <p class="text-sm text-gray-600">Envía tu orden médica y coordina la visita. Respondemos en minutos.</p>
-          </div>
-        </div>
-        <div class="flex gap-4">
-          <span class="w-9 h-9 bg-brand-500 text-white rounded-full flex items-center justify-center font-bold shrink-0">2</span>
-          <div>
-            <h4 class="font-bold text-brand-900">La enfermera llega a tu casa</h4>
-            <p class="text-sm text-gray-600">Venopunción con insumos estériles de un solo uso y bioseguridad total.</p>
-          </div>
-        </div>
-        <div class="flex gap-4">
-          <span class="w-9 h-9 bg-brand-500 text-white rounded-full flex items-center justify-center font-bold shrink-0">3</span>
-          <div>
-            <h4 class="font-bold text-brand-900">Resultados a tu correo</h4>
-            <p class="text-sm text-gray-600">La muestra se procesa en laboratorio aliado y te avisamos por WhatsApp.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COBERTURA + confianza -->
-<section class="py-20 px-4 bg-white">
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-    <div>
-      <h3 class="text-3xl font-extrabold text-brand-900 mb-4">Cobertura en Medellín y área metropolitana</h3>
-      <p class="text-gray-600 mb-6">Visitamos Medellín, Envigado, Itagüí, Sabaneta, Bello y La Estrella. Confirmamos tu zona al agendar.</p>
-      <div class="grid grid-cols-2 gap-3">
-        <div class="bg-brand-50 rounded-xl p-4 border border-brand-100 text-center">
-          <p class="text-xl font-bold text-brand-500">6am–6pm</p>
-          <p class="text-xs text-gray-500">lunes a sábado</p>
-        </div>
-        <div class="bg-brand-50 rounded-xl p-4 border border-brand-100 text-center">
-          <p class="text-xl font-bold text-brand-500">24–48h</p>
-          <p class="text-xs text-gray-500">resultados</p>
-        </div>
-        <div class="bg-brand-50 rounded-xl p-4 border border-brand-100 text-center">
-          <p class="text-xl font-bold text-brand-500">100%</p>
-          <p class="text-xs text-gray-500">insumos estériles</p>
-        </div>
-        <div class="bg-brand-50 rounded-xl p-4 border border-brand-100 text-center">
-          <p class="text-xl font-bold text-brand-500">ReTHUS</p>
-          <p class="text-xs text-gray-500">registro vigente</p>
-        </div>
-      </div>
+      <b style="color:#E9F6FF">Vitae Hogar</b>
+      <small>Toma de muestras de sangre a domicilio · Medellín, Colombia</small>
     </div>
     <div>
-      <img src="img/adulto-mayor.jpg" alt="Paciente adulta mayor feliz con su enfermera en casa" class="rounded-3xl shadow-2xl w-full object-cover">
+      <span>Lunes a sábado · 6am-6pm</span>
+      <small>© <span id="y">2026</span> Vitae Hogar · Enfermería profesional independiente<br>Fotos: Openverse/Flickr (CC)</small>
     </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="py-20 px-4 bg-brand-50">
-  <div class="max-w-3xl mx-auto">
-    <h3 class="text-3xl font-extrabold text-center text-brand-900 mb-10">Preguntas frecuentes</h3>
-    <div class="space-y-4">
-      <details class="bg-white rounded-xl p-5 shadow-sm">
-        <summary class="font-semibold text-brand-900 cursor-pointer">¿Necesito orden médica?</summary>
-        <p class="text-sm text-gray-600 mt-2">Sí, de cualquier EPS o particular. Envíala por WhatsApp al agendar.</p>
-      </details>
-      <details class="bg-white rounded-xl p-5 shadow-sm">
-        <summary class="font-semibold text-brand-900 cursor-pointer">¿Cuánto cuesta?</summary>
-        <p class="text-sm text-gray-600 mt-2">El servicio incluye desplazamiento y toma profesional. Cotizamos al momento según tu zona y exámenes.</p>
-      </details>
-      <details class="bg-white rounded-xl p-5 shadow-sm">
-        <summary class="font-semibold text-brand-900 cursor-pointer">¿Cómo pago?</summary>
-        <p class="text-sm text-gray-600 mt-2">Nequi, Daviplata o efectivo al momento de la toma.</p>
-      </details>
-      <details class="bg-white rounded-xl p-5 shadow-sm">
-        <summary class="font-semibold text-brand-900 cursor-pointer">¿Cuándo llegan los resultados?</summary>
-        <p class="text-sm text-gray-600 mt-2">Los exámenes básicos en 24–48 horas; especiales de 3 a 5 días. Te avisamos por WhatsApp.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- CTA FINAL -->
-<section class="py-16 px-4 bg-gradient-to-b from-brand-500 to-brand-700">
-  <div class="max-w-3xl mx-auto text-center text-white">
-    <h3 class="text-3xl md:text-4xl font-extrabold mb-4">Contrata hoy tu toma de muestra en Medellín</h3>
-    <p class="text-brand-100 text-lg mb-8">Sin filas, sin esperas, sin salir de casa. Solo envíanos tu orden médica.</p>
-    <a href="https://wa.me/570000000000?text=Hola%2C%20quiero%20agendar%20una%20toma%20de%20muestras%20a%20domicilio" target="_blank"
-       class="inline-block bg-[#05d204] text-white font-bold text-lg px-10 py-4 rounded-full hover:brightness-110 transition shadow-2xl">
-      💬 Escribir por WhatsApp
-    </a>
-    <p class="text-brand-100 text-sm mt-6">Atención: lunes a sábado 6am–6pm · Medellín y área metropolitana</p>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="bg-brand-900 text-white py-10 px-4">
-  <div class="max-w-6xl mx-auto text-center">
-    <div class="flex items-center justify-center gap-2 mb-3">
-      <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center font-bold">V</div>
-      <span class="font-bold text-lg">Vitae Hogar</span>
-    </div>
-    <p class="text-sm text-brand-100 mb-1">Toma de muestras de sangre a domicilio · Medellín, Colombia</p>
-    <p class="text-xs text-brand-300">© 2026 Vitae Hogar · Enfermería profesional independiente · Fotos: Openverse/Flickr (CC)</p>
   </div>
 </footer>
 
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"MedicalBusiness",
+  "name":"Vitae Hogar",
+  "description":"Toma de muestras de sangre a domicilio en Medellín con enfermera profesional, insumos estériles y resultados en 24-48 horas.",
+  "url":"https://wroso1.github.io/vitaehogar/",
+  "image":"https://wroso1.github.io/vitaehogar/img/hero-enfermera.jpg",
+  "telephone":"+570000000000",
+  "priceRange":"$$",
+  "areaServed":["Medellín","Envigado","Itagüí","Sabaneta","Bello","La Estrella"],
+  "address":{"@type":"PostalAddress","addressLocality":"Medellín","addressRegion":"Antioquia","addressCountry":"CO"},
+  "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"06:00","closes":"18:00"}]
+}
+</script>
+<script>
+document.getElementById("y").textContent = new Date().getFullYear();
+(function(){
+  var els = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window)) { els.forEach(function(e){e.classList.add("in")}); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: .12 });
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
 </body>
 </html>
