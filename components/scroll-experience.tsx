@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import Lenis from 'lenis'
 
 /**
  * Experiencia de scroll:
@@ -12,6 +13,18 @@ export function ScrollExperience() {
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const reveals = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'))
+
+    let lenis: Lenis | null = null
+    let lenisFrame = 0
+
+    if (!reduce) {
+      lenis = new Lenis({ duration: 1.05, smoothWheel: true, touchMultiplier: 1.6 })
+      const raf = (time: number) => {
+        lenis?.raf(time)
+        lenisFrame = window.requestAnimationFrame(raf)
+      }
+      lenisFrame = window.requestAnimationFrame(raf)
+    }
 
     if (reduce) {
       reveals.forEach((el) => el.classList.add('is-in'))
@@ -66,6 +79,8 @@ export function ScrollExperience() {
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
       if (frame) window.cancelAnimationFrame(frame)
+      if (lenisFrame) window.cancelAnimationFrame(lenisFrame)
+      lenis?.destroy()
     }
   }, [])
 

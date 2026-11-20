@@ -407,3 +407,90 @@
     transform: none !important;
   }
 }
+
+/* --------------------------- scroll suave (lenis) ------------------------- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ------------------- seccion fijada con avance horizontal ------------------ */
+.pin-wrap {
+  position: relative;
+  height: 320vh;
+  background: #183d38;
+}
+.pin-stage {
+  position: sticky;
+  top: 0;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+.pin-head {
+  padding-inline: clamp(20px, 5vw, 48px);
+  max-width: 940px;
+}
+.pin-track {
+  display: flex;
+  width: max-content;
+  align-items: stretch;
+  gap: 20px;
+  padding: 38px clamp(20px, 5vw, 48px) 0;
+  will-change: transform;
+}
+.pin-card {
+  width: clamp(255px, 66vw, 420px);
+  flex: 0 0 auto;
+  border-radius: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.055);
+  padding: 30px;
+  backdrop-filter: blur(6px);
+}
+.pin-card-cta {
+  background: linear-gradient(150deg, rgba(231, 131, 100, 0.24), rgba(255, 255, 255, 0.06));
+}
+.pin-progress {
+  position: absolute;
+  left: clamp(20px, 5vw, 48px);
+  right: clamp(20px, 5vw, 48px);
+  bottom: 32px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.16);
+  overflow: hidden;
+}
+.pin-progress span {
+  display: block;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, #9dc0a6, #e78364);
+  transition: transform 0.1s linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pin-wrap {
+    height: auto;
+  }
+  .pin-stage {
+    position: static;
+    height: auto;
+    padding-block: 64px;
+  }
+  .pin-track {
+    flex-wrap: wrap;
+    width: auto;
+    transform: none !important;
+  }
+  .pin-progress {
+    display: none;
+  }
+}

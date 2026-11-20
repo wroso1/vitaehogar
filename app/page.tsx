@@ -1,6 +1,7 @@
 import { ArrowRight, Clock3, Droplet, HeartPulse, MapPin, ShieldCheck, Sparkles, Star, Syringe, UserRound } from 'lucide-react'
 import { BookingForm } from '@/components/booking-form'
 import { ScrollExperience } from '@/components/scroll-experience'
+import { HorizontalSteps } from '@/components/horizontal-steps'
 
 const steps = [
   { number: '01', title: 'Elige tu horario', text: 'Cuéntanos dónde estás y cuándo te viene mejor.' },
@@ -98,9 +99,8 @@ export default function Page() {
         </div>
       </div>
 
-      <section id="proceso" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 md:py-28">
-        <div className="mx-auto max-w-xl text-center" data-reveal><p className="text-xs font-semibold uppercase tracking-[.18em] text-[#6b9b7e]">Así de sencillo</p><h2 className="mt-4 text-4xl font-medium tracking-[-.045em] sm:text-5xl">Tu bienestar, sin complicaciones.</h2><p className="mt-4 leading-7 text-[#71837d]">Nos encargamos de los detalles para que tú solo te ocupes de sentirte bien.</p></div>
-        <div className="mt-14 grid gap-5 md:grid-cols-3">{steps.map((step, i) => <article key={step.number} data-reveal style={{ transitionDelay: `${i * 120}ms` }} className="rounded-3xl border border-[#e5e9e2] bg-white p-7 sm:p-8"><p className="font-serif text-4xl italic text-[#a8c3ad]">{step.number}</p><h3 className="mt-6 text-xl font-semibold">{step.title}</h3><p className="mt-2 leading-6 text-[#71837d]">{step.text}</p></article>)}</div>
+      <section id="proceso">
+        <HorizontalSteps steps={steps} />
       </section>
 
       <section id="nosotros" className="bg-[#eaf1e9]">
